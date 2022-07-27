@@ -45,4 +45,4 @@
 
 # Credits
 - [Markdown badges source](https://github.com/Ileriayo/markdown-badges)
-- [Dataset source]([https://www.kaggle.com/datasets/kunalgupta2616/hackerearth-customer-segmentation-hackatho](https://github.com/MoH-Malaysia/covid19-public)
+- [Dataset source](https://github.com/MoH-Malaysia/covid19-public)
