@@ -107,15 +107,11 @@ y_test = np.array(y_test)
 input_shape = np.shape(X_train)[1:]
 model = Sequential()
 model.add(Input(shape=(input_shape)))
-model.add(LSTM(128,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
+model.add(LSTM(64,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
 model.add(Dropout(0.3))
-model.add(LSTM(128,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
+model.add(LSTM(64,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
 model.add(Dropout(0.3))
-model.add(LSTM(128,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
-model.add(Dropout(0.2))
-model.add(LSTM(128,return_sequences=(True))) # true because passing to other lstm layer, need to retain 3d shape
-model.add(Dropout(0.2))
-model.add(LSTM(128))
+model.add(LSTM(64))
 model.add(Dropout(0.2))
 model.add(Dense(1,activation='linear'))
 model.summary()
@@ -128,10 +124,10 @@ LOGS_PATH = os.path.join(os.getcwd(),'Logs',datetime.datetime.now().
                     strftime('%Y%m%d-%H%M%S'))
 
 tensorboard_callback = TensorBoard(log_dir=LOGS_PATH,histogram_freq=1)
-# early_callback = EarlyStopping(monitor='val_loss',patience=3)
+early_callback = EarlyStopping(monitor='val_loss',patience=5)
 #%%
-hist = model.fit(X_train,y_train,epochs=50,
-                    callbacks=[tensorboard_callback,],
+hist = model.fit(X_train,y_train,epochs=200,
+                    callbacks=[tensorboard_callback,early_callback],
                     validation_data=(X_test,y_test))
 
 #%%
@@ -156,7 +152,7 @@ actual_cases = mms.inverse_transform(y_test)
 
 mape = mean_absolute_percentage_error(actual_cases, pred_cases)
 
-print(f'MAPE is {np.round(mape*100,2)}%')
+print(f'MAPE (Mean Absolute Percentage Error) is {np.round(mape*100,2)}%')
 
 model.save(MODEL_SAVE_PATH)
 # %%
