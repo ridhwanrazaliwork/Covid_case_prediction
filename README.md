@@ -42,3 +42,7 @@
 
 ## Mean Absolute Percentage Error value
 ![mape_value](src/mape_predict.png)
+
+# Credits
+- [Markdown badges source](https://github.com/Ileriayo/markdown-badges)
+- [Dataset source]([https://www.kaggle.com/datasets/kunalgupta2616/hackerearth-customer-segmentation-hackatho](https://github.com/MoH-Malaysia/covid19-public)
